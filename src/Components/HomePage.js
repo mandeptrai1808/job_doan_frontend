@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 export default function HomePage() {
   return (
-    <div className="bg-blue-100">
+    <div>
       <div className="w-full overflow-hidden">
         <MenuHeader />
       </div>
@@ -144,7 +144,7 @@ export default function HomePage() {
 
             <div>
               <div
-                className="w-56 h-56 mt-2 mr-4 mb-2 float-left hover:scale-105 duration-100 cursor-pointer"
+                className="md:h-56 md:w-56 h-32 w-32 mt-2 mr-4 mb-2 float-left hover:scale-105 duration-100 cursor-pointer"
                 style={{
                   backgroundImage: `url(${
                     process.env.PUBLIC_URL + "/BSyenphi.png"
@@ -180,7 +180,7 @@ export default function HomePage() {
 
             <div className="my-10">
               <div
-                className="w-56 h-56 mt-2 mr-4 mb-2 float-left hover:scale-105 duration-100 cursor-pointer"
+                className="md:h-56 md:w-56 h-32 w-32 mt-2 mr-4 mb-2 float-left hover:scale-105 duration-100 cursor-pointer"
                 style={{
                   backgroundImage: `url(${
                     process.env.PUBLIC_URL + "/bacsinhung.jpg"
@@ -218,7 +218,7 @@ export default function HomePage() {
 
             <div>
               <div
-                className="w-56 h-56 mt-2 mr-4 mb-2 float-left hover:scale-105 duration-100 cursor-pointer"
+                className="md:h-56 md:w-56 h-32 w-32 mt-2 mr-4 mb-2 float-left hover:scale-105 duration-100 cursor-pointer"
                 style={{
                   backgroundImage: `url(${
                     process.env.PUBLIC_URL + "/bslandung.png"

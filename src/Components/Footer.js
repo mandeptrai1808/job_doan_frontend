@@ -3,7 +3,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <div
-    className='w-full  h-80 border-t-4 relative flex items-center border-black'
+    className='w-full  md:h-80 h-96 pb-10 md:pb-0 border-t-4 relative flex items-center border-black'
     style={{backgroundColor: "#181823"}}
     >
     
@@ -31,7 +31,7 @@ export default function Footer() {
 
 
     <div className='absolute p-2 text-center bottom-0 w-full text-white left-0 bg-black'>
-        <p>made by someone</p>
+        <p>made by Huyen Tran</p>
     </div>
     </div>
   )

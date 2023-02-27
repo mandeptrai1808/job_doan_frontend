@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import SubMenu from "./SubMenu";
 // import type { MenuProps } from 'antd';
 import { Button, Dropdown } from 'antd';
-
+import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 export default function MenuHeader() {
   const navigate = useNavigate();
 
@@ -34,15 +34,30 @@ export default function MenuHeader() {
     },
   ];
   
+  const [subMenu, setSubMenu] = useState(false)
+
+  const buttonSubMenu = () => {
+    setSubMenu(
+      !subMenu
+      )
+  }
+
 
   return (
 
-    
-
+    <div>
     <div
       style={{ backgroundColor: "#181823", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}
-      className="w-screen h-20 flex justify-between shadow-md items-center px-20"
+
+      className="w-screen h-20 flex px-5 justify-between shadow-md items-center md:px-20"
     >
+      <div className={`w-10 h-10 ${subMenu ? 'bg-slate-500': ''} rounded md:hidden flex items-center text-white text-3xl font-bold justify-center`}
+        onClick={() => {
+          buttonSubMenu()
+        }}
+      >
+        <MenuOutlined/>
+      </div>
       <div className="text-3xl text-white">
         {/* <p className="m-0">LOGO</p> */}
         <div 
@@ -56,36 +71,39 @@ export default function MenuHeader() {
 
       </div>
 
-      <div className="flex text-white w-2/3 justify-center">
+      <div className="md:flex hidden  text-white w-2/3 justify-center">
         <NavLink
-          onClick={() => {
-            navigate();
-          }}
+          to={'/'}
           className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black"
         >
           <p>TRANG CHỦ</p>
         </NavLink>
+          <Dropdown menu={{ items }} placement="bottomRight" size="large" trigger='click' arrow>
         <div className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>THỰC ĐƠN</p>
         </div>
-        <div className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
+        </Dropdown>
+        <NavLink 
+        to={"/mevabe"}
+        className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>MẸ VÀ BÉ</p>
-        </div>
-        <Dropdown menu={{ items }} placement="bottomRight" size="large" trigger='click' arrow>
+        </NavLink>
+        
+        <NavLink to={"/camnang"}>
         <div className="hover:bg-white relative hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>CẨM NANG</p>
           {/* <div className="absolute top-20 right-0">
           <SubMenu/>
           </div> */}
         </div>
-        </Dropdown>
+        </NavLink>
 
         <div className="hover:bg-white bg hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>LIÊN HỆ</p>
         </div>
       </div>
 
-        <div className="flex items-center border-left">
+        <div className="md:flex hidden items-center border-left">
           <div
             className="mr-2"
             onClick={() => {
@@ -106,6 +124,12 @@ export default function MenuHeader() {
             </p>
           </div>
         </div>
+
+      <div className="w-10 h-10 md:hidden flex items-center text-white text-3xl font-bold justify-center">
+            <UserOutlined/>
+      </div>
+    </div>
+    {subMenu ? <SubMenu/> : ''}
     </div>
   );
 }
