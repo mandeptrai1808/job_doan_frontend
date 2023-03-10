@@ -22,6 +22,8 @@ export const LoginUser =  (_dataLogin) => {
       try {
         let {data} = await UserService.Login(_dataLogin);
         successNotification("Đăng nhập thành công", "Bạn đã đăng nhập thành công!!")
+        localStorage.setItem('login_user', JSON.stringify(data));
+        dispatch({type: "IS_LOGIN"})
         console.log(data);
       } catch (error) {
         errorNotification("Đăng nhập thất bại", "Kiểm tra lại mật khẩu hoặc tên đăng nhập!")

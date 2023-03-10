@@ -1,10 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons/lib/icons";
+import { useSelector } from "react-redux";
+
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const {isLogin} = useSelector(state => state.UserReducer)
+
+
+  console.log(isLogin)
+
+
+  useEffect(() => {
+    if(isLogin) 
+        navigate('/')
+  }, [isLogin])
+  
 
   return (
     <div className="w-screen h-screen flex">

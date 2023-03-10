@@ -2,10 +2,18 @@ import React, {useState} from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import SubMenu from "./SubMenu";
 // import type { MenuProps } from 'antd';
-import { Button, Dropdown } from 'antd';
+import { Button, Dropdown, Popover } from 'antd';
 import { MenuOutlined, UserOutlined } from "@ant-design/icons";
+import UserButton from "./UserButton";
+import { click } from "@testing-library/user-event/dist/click";
+import LoginButton from "./LoginButton";
 export default function MenuHeader() {
   const navigate = useNavigate();
+
+  let userData = localStorage.getItem("login_user");
+  userData = userData && JSON.parse(userData);
+  if (!userData) userData = {};
+
 
   const items = [
     {
@@ -33,7 +41,9 @@ export default function MenuHeader() {
       ),
     },
   ];
+
   
+
   const [subMenu, setSubMenu] = useState(false)
 
   const buttonSubMenu = () => {
@@ -58,7 +68,7 @@ export default function MenuHeader() {
       >
         <MenuOutlined/>
       </div>
-      <div className="text-3xl text-white">
+      <div className="w-fit text-3xl text-white">
         {/* <p className="m-0">LOGO</p> */}
         <div 
         className="w-16 h-16"
@@ -103,6 +113,32 @@ export default function MenuHeader() {
         </div>
       </div>
 
+      <div className="hidden md:block">
+        {(userData.username) ? 
+        <Popover content={<UserButton/>} placement='bottomRight' trigger={"click"}>
+        <div className="md:flex cursor-pointer opacity-80 hover:opacity-100 duration-100 hidden items-center border-left">
+          <div className="w-10 h-10 rounded-full" style={{
+            backgroundImage: `url(${userData.avatar})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover'
+          }}>
+
+          </div>
+          <div className="text-white  ml-5">
+            <p className="m-0 text-lg font-bold">
+              {userData.username} 
+            </p>
+            <p className="m-0 text-sm opacity-50">
+              {userData.email}
+            </p>
+          </div>
+        </div>
+
+        </Popover>
+
+        
+        :
+
         <div className="md:flex hidden items-center border-left">
           <div
             className="mr-2"
@@ -124,10 +160,28 @@ export default function MenuHeader() {
             </p>
           </div>
         </div>
+        
+        }
+      </div>
 
       <div className="w-10 h-10 md:hidden flex items-center text-white text-3xl font-bold justify-center">
+        {userData.username ? 
+        <Popover content={<UserButton/>} placement='bottomRight' trigger={"click"}>
+
+         <div className="w-10 h-10 rounded-full" style={{
+          backgroundImage: `url(${userData.avatar})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover'
+        }}>
+
+        </div>
+        </Popover>
+        :
+      <Popover   content={<LoginButton/>} placement='bottomRight' trigger={"click"}>
             <UserOutlined/>
-      </div>
+      </Popover>
+        }
+      </div>  
     </div>
     {subMenu ? <SubMenu/> : ''}
     </div>

@@ -6,6 +6,7 @@ import LoginPage from './Components/LoginPage';
 import RegisterPage from './Components/RegisterPage';
 import MevabePage from './Components/MevabePage';
 import Camnang from './Components/Camnang';
+import ProfilePage from './Components/ProfilePage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/mevabe' element={<MevabePage/>}/>
         <Route path='/camnang' element={<Camnang/>}/>
+        <Route path='/profile' element={<ProfilePage/>}/>
       </Routes>
 
       

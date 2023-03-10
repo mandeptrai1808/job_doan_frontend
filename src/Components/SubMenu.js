@@ -4,12 +4,16 @@ import { useNavigate, NavLink } from "react-router-dom";
 
 export default function SubMenu() {
 
+
+
+  
+
   const items = [
     {
       key: '1',
       label: (
         <a href="#">
-          1st menu item
+         3 tháng đầu thai kì
         </a>
       ),
     },
@@ -17,7 +21,7 @@ export default function SubMenu() {
       key: '2',
       label: (
         <a href="#">
-          2nd menu item
+         3 tháng giữa thai kì
         </a>
       ),
     },
@@ -25,7 +29,15 @@ export default function SubMenu() {
       key: '3',
       label: (
         <a href="#">
-          3rd menu item
+         3 tháng giữa đén sau sinh
+        </a>
+      ),
+    },
+    {
+      key: '4',
+      label: (
+        <a href="#">
+        Trẻ đến tuổi ăn dặm
         </a>
       ),
     },
@@ -41,22 +53,27 @@ export default function SubMenu() {
         >
           <p>TRANG CHỦ</p>
         </NavLink>
-        <div className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
+        <Dropdown menu={{ items }} placement="bottomRight" size="large" trigger='click' arrow>
+        <div
+        
+        className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>THỰC ĐƠN</p>
         </div>
+        </Dropdown>
         <NavLink 
           to={'/mevabe'}
         className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>MẸ VÀ BÉ</p>
         </NavLink>
-        <Dropdown menu={{ items }} placement="bottomRight" size="large" trigger='click' arrow>
-        <div className="hover:bg-white relative hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
+      
+        <NavLink
+        to={'/camnang'}
+         className="hover:bg-white relative hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>CẨM NANG</p>
           {/* <div className="absolute top-20 right-0">
           <SubMenu/>
           </div> */}
-        </div>
-        </Dropdown>
+        </NavLink>
 
         <div className="hover:bg-white bg hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>LIÊN HỆ</p>
