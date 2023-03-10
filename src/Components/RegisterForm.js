@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Checkbox, Form, Input } from "antd";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { LoginUser, RegisterUser } from "../Redux/Actions/UserAction";
+import { LoginUser, RegisterLocal, RegisterUser } from "../Redux/Actions/UserAction";
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
 export default function RegisterForm() {
 
@@ -17,7 +17,8 @@ export default function RegisterForm() {
     const onFinish = (value) => {
         if (value.password === value.repassword){
             // console.log(value)
-            dispatch(RegisterUser(value, MoveToLogin))
+            dispatch(RegisterLocal(value, MoveToLogin))
+            // dispatch(RegisterUser(value, MoveToLogin))
         }
         else alert("Mật khẩu nhập lại không đúng!")
     }

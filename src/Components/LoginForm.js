@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useDispatch } from "react-redux";
-import { LoginUser } from "../Redux/Actions/UserAction";
+import { LoginUser, LoginUserLocal } from "../Redux/Actions/UserAction";
 import { useNavigate } from "react-router-dom";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 export default function LoginForm() {
@@ -10,7 +10,8 @@ export default function LoginForm() {
 
 
   const onFinish = (value) => {
-    dispatch(LoginUser(value));
+    // dispatch(LoginUser(value));
+    dispatch(LoginUserLocal(value))
     // console.log(value)
   };
 
