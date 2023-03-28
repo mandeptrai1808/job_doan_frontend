@@ -5,11 +5,11 @@ import SubMenu from "./SubMenu";
 import { Button, Dropdown, Popover } from 'antd';
 import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import UserButton from "./UserButton";
-import { click } from "@testing-library/user-event/dist/click";
 import LoginButton from "./LoginButton";
+import { useDispatch } from "react-redux";
 export default function MenuHeader() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   let userData = localStorage.getItem("login_user");
   userData = userData && JSON.parse(userData);
   if (!userData) userData = {};
@@ -19,25 +19,60 @@ export default function MenuHeader() {
     {
       key: '1',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          1st menu item
-        </a>
+        <p onClick={() => {
+          dispatch({
+            type: 'SWITCH_TYPEID',
+            content: 0
+          })
+          navigate('/menu')
+        }}>
+          3 Tháng đầu thai kì
+        </p>
       ),
     },
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          2nd menu item
-        </a>
+        <p onClick={() => {
+          dispatch({
+            type: 'SWITCH_TYPEID',
+            content: 1
+          })
+          navigate('/menu')
+
+        }}>
+          3 Tháng giữa thai kì
+        </p>
       ),
     },
     {
       key: '3',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-          3rd menu item
-        </a>
+        <p onClick={() => {
+          dispatch({
+            type: 'SWITCH_TYPEID',
+            content: 2
+          })
+          navigate('/menu')
+
+        }}>
+          3 Tháng cuối đến sinh
+        </p>
+      ),
+    },
+    {
+      key: '4',
+      label: (
+        <p onClick={() => {
+          dispatch({
+            type: 'SWITCH_TYPEID',
+            content: 3
+          })
+          navigate('/menu')
+
+        }}>
+          Trẻ đến tuổi ăn dặm
+        </p>
       ),
     },
   ];
@@ -89,9 +124,9 @@ export default function MenuHeader() {
           <p>TRANG CHỦ</p>
         </NavLink>
           <Dropdown menu={{ items }} placement="bottomRight" size="large" trigger='click' arrow>
-        <div className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
+        <NavLink to={'/menu'} className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>THỰC ĐƠN</p>
-        </div>
+        </NavLink>
         </Dropdown>
         <NavLink 
         to={"/mevabe"}
@@ -108,9 +143,9 @@ export default function MenuHeader() {
         </div>
         </NavLink>
 
-        <div className="hover:bg-white bg hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
+        <NavLink to={'/lienhe'} className="hover:bg-white bg hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>LIÊN HỆ</p>
-        </div>
+        </NavLink>
       </div>
 
       <div className="hidden md:block">
