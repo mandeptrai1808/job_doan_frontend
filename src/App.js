@@ -16,6 +16,7 @@ import AdminPage from './Pages/AdminPage';
 import QuanLyMenu from './Pages/QuanLyMenu';
 import ModalTemplate from './Template/ModalTemplate';
 import MenuPage from './Pages/MenuPage';
+import QuanLyUsers from './Pages/QuanLyUsers';
 // import 'antd/dist/antd.css';
 
 function App() {
@@ -36,7 +37,8 @@ function App() {
         <Route path='/andam' element={<AndamPage/>}/>
         <Route path='/lienhe' element={<LienhePage/>}/>
         <Route path='/menu' element={<MenuPage/>}/>
-        <Route path='/admin/menu' element={<AdminPage content={<QuanLyMenu/>}/>}/>
+        <Route path='/adminmenu' element={<AdminPage content={<QuanLyMenu/>}/>}/>
+        <Route path='/admin' element={<AdminPage content={<QuanLyUsers/>}/>}/>
       </Routes>
 
       

@@ -1,7 +1,9 @@
 const stateDefault = {
     menuListCurrent: [],
     typeId: 0,
-    initContent: {}
+    initContent: {},
+    userList: [],
+    rootList: []
 }
 
 export const ManagerReducer = (state = stateDefault, action) => {
@@ -16,6 +18,13 @@ export const ManagerReducer = (state = stateDefault, action) => {
     case "SET_INIT_CONTENT":
         state.initContent = action.content
         return {...state} 
+    case "GET_USER_LIST":
+        state.userList = action.content;
+        return {...state}    
+    case "GET_LIST_ROOTUSER":{
+        state.rootList = action.content;
+        return {...state}
+    }
     default:
         return {...state}
 }

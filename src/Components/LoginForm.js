@@ -10,8 +10,8 @@ export default function LoginForm() {
 
 
   const onFinish = (value) => {
-    // dispatch(LoginUser(value));
-    dispatch(LoginUserLocal(value))
+    dispatch(LoginUser(value));
+    // dispatch(LoginUserLocal(value))
     // console.log(value)
   };
 

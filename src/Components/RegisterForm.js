@@ -17,8 +17,8 @@ export default function RegisterForm() {
     const onFinish = (value) => {
         if (value.password === value.repassword){
             // console.log(value)
-            dispatch(RegisterLocal(value, MoveToLogin))
-            // dispatch(RegisterUser(value, MoveToLogin))
+            // dispatch(RegisterLocal(value, MoveToLogin))
+            dispatch(RegisterUser(value, MoveToLogin))
         }
         else alert("Mật khẩu nhập lại không đúng!")
     }

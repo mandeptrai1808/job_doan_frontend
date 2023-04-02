@@ -77,3 +77,87 @@ export const UpdateMenu = (_dataMenu, _menuId, _dataImg) => {
     }
   }
 }
+
+export const GetUserList = () => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.GetUserList();
+      dispatch({
+        type: "GET_USER_LIST",
+        content: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const DeleteUserById = (_id) => {
+  return async (dispatch) => {
+   try {
+    await ManagerService.DeleteUserById(_id);
+    successNotification("Xóa thành công", "Bạn đã xóa 1 USERS thành công!!")
+    dispatch(GetUserList());
+   } catch (error) {
+    console.log(error)
+    errorNotification("Xóa thất bại", "Vui lòng kiểm tra lại đường truyền!")
+   }
+
+  }
+}
+
+
+export const UpdateUser = (_id, _data) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.UpdateUser(_id, _data)
+      successNotification("Cập nhật thành công", "Bạn đã cập nhật 1 USER thành công!!")
+      dispatch({type: "CLOSE_MODAL"});
+      dispatch(GetUserList());
+    } catch (error) {
+      errorNotification("Cập nhật thất bại", "Vui lòng kiểm tra lại đường truyền!")
+    }
+  }
+}
+
+export const LoginRootUser = (_data) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.LoginRootUser(_data);
+      successNotification("Đăng nhập thành công", "Bạn đã truy cập tài khoản ADMIN thành công!!")
+      dispatch({type: "CLOSE_MODAL"})
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+      errorNotification("Đăng nhập thất bại", "Vui lòng kiểm tra tài khoản và mật khẩu!")
+
+    }
+  }
+}
+
+export const GetAllRootUser = () => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.GetAllRootUser();
+      dispatch({
+        type: "GET_LIST_ROOTUSER",
+        content: data
+      })
+    } catch (error) {
+      console.log(error)      
+    }
+  }
+}
+
+export const RegisterRootUserAction = (_data) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.RegisterRootUser(_data)
+      successNotification("Đăng ký thành công", "Hệ thống đã lưu tài khoản admin của bạn!!")
+      dispatch({type: "CLOSE_MODAL"})
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}

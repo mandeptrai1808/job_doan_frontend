@@ -120,13 +120,13 @@ export default function MenuAdminPage() {
 
       <div className="md:flex hidden  text-white w-2/3 justify-center">
         <NavLink
-          to={'/'}
+          to={'/admin'}
           className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black"
         >
           <p>QUẢN LÝ USERS</p>
         </NavLink >
           <Dropdown menu={{ items }} placement="bottomRight" size="large" trigger='hover' arrow>
-        <NavLink to={'/admin/menu'} className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
+        <NavLink to={'/adminmenu'} className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
           <p>QUẢN LÝ THỰC ĐƠN</p>
         </NavLink>
         </Dropdown>

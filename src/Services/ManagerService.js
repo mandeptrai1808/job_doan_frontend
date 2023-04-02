@@ -43,6 +43,51 @@ export const ManagerService = {
         method: 'PUT',
         data: _dataMenu
       })
+    },
+
+    GetUserList: () => {
+      return axios({
+        url: `${BASE_URL}/users/getall`,
+        method: "GET"
+      })
+    },
+
+    DeleteUserById: (_id) => {
+      return axios({
+        url: `${BASE_URL}/users/delete/${_id}`,
+        method: "DELETE"
+      })
+    },
+
+    UpdateUser: (_id, _data) => {
+      return axios({
+        url: `${BASE_URL}/users/update/${_id}`,
+        method: "PUT",
+        data: _data
+      })
+    },
+
+    LoginRootUser: (_data) => {
+      return axios({
+        url: `${BASE_URL}/users/loginrootuser`,
+        method: 'POST',
+        data: _data
+      })
+    },
+
+    GetAllRootUser: () => {
+      return axios({
+        url: `${BASE_URL}/users/getallroot`,
+        method: "GET"
+      })
+    },
+
+    RegisterRootUser: (_data) => {
+      return axios({
+        url: `${BASE_URL}/users/createrootuser`,
+        method: "POST",
+        data: _data
+      })
     }
 
 
