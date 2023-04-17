@@ -5,19 +5,20 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import React from 'react'
-import { AddNewMenu } from '../Redux/Actions/ManagerAction'
+import { AddNewMenu, UpdateCamnang, UpdateMenu } from '../Redux/Actions/ManagerAction'
 
-export default function AddNewMenuForm() {
+export default function EditCamnangForm() {
 
     const dispatch = useDispatch();
 
-    const {typeId} = useSelector(state => state.ManagerReducer);
+    const {initContent} = useSelector(state => state.ManagerReducer);
 
     const [selectedImage, setSelectedImage] = useState();
     const [dataContent, setDataContent] = useState({
         title: '',
         content: ''
     })
+
 
 
     const updateImageSelected = (event) => {
@@ -33,21 +34,25 @@ export default function AddNewMenuForm() {
         })
     }
 
-    const cancelButton = () => {
-      dispatch({type: "CLOSE_MODAL"})      
-    }
-
     const submitButton = () => {
-      dispatch(AddNewMenu(
+      dispatch(UpdateCamnang(
         {
-          type: typeId,
           title: dataContent.title,
           content: dataContent.content
         },
+        initContent.id,
         selectedImage
       ))
+      setSelectedImage()
     }
 
+    useEffect(() => {
+        setDataContent({
+            title: initContent.title,
+            content: initContent.content
+        })
+    }, [initContent])
+    
     
   return (
     <div className='w-full'>
@@ -55,7 +60,14 @@ export default function AddNewMenuForm() {
             <div className='md:w-1/3 md:mr-2 mb-2 rounded-md overflow-hidden' >
                 <div className='w-full relative mr-2 h-40 bg-slate-200'
                 style={{
-                    backgroundImage: `${(selectedImage ? `url(${URL.createObjectURL(selectedImage)})` : '')}`,
+                    backgroundImage: `${(selectedImage ? 
+                        `url(${URL.createObjectURL(selectedImage)})` : 
+                        `url(${initContent.image?.replaceAll(
+                            "\\",
+                            "/"
+                          )})`
+                        )}`,
+
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                   }}
@@ -81,8 +93,13 @@ export default function AddNewMenuForm() {
         <div className='flex justify-center'>
         <button onClick={() => {
           submitButton()
-        }} className='w-20 rounded-md my-5 py-2 bg-red-500 text-white'>ADD</button>
-        <button onClick={cancelButton} className='w-20 rounded-md my-5 ml-2 py-2 bg-blue-500 text-white'>CANCEL</button>
+        }} className='w-20 rounded-md my-5 py-2 bg-red-500 text-white'>UPDATE</button>
+        <button 
+        className='w-20 rounded-md my-5 ml-2 py-2 bg-blue-500 text-white'
+        onClick={() => {
+          dispatch({type: "CLOSE_MODAL"})
+        }}
+        >CANCEL</button>
         </div>
 
     </div>

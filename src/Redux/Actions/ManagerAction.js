@@ -161,3 +161,65 @@ export const RegisterRootUserAction = (_data) => {
     }
   }
 }
+
+export const GetAllCamnang = () => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.GetCamnangList();
+      dispatch({
+        type: "GET_CAM_NANG_LIST",
+        content: data
+      })
+      console.log(data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const DeleteCamnang = (_id) => {
+  return async (dispatch) => {
+   try {
+    await ManagerService.DeleteCamnang(_id);
+    successNotification("Xóa thành công", "Bạn đã xóa 1 Cẩm nang thành công!!")
+    dispatch(GetAllCamnang());
+   } catch (error) {
+    console.log(error)
+    errorNotification("Xóa thất bại", "Vui lòng kiểm tra lại đường truyền!")
+   }
+
+  }
+}
+
+
+export const AddNewCamnang = (_data, _dataImg) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.AddNewCamnang(_data);
+      let dataImage = await ManagerService.UploadImageCamnang(data.id, _dataImg, "CamnangImage")
+      dispatch({type:'CLOSE_MODAL'})
+      dispatch(GetAllCamnang())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const UpdateCamnang = (_dataMenu, _menuId, _dataImg) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await ManagerService.UpdateCamnang(_dataMenu, _menuId);
+      if(_dataImg){
+        let dataImage = await ManagerService.UploadImageCamnang(data.id, _dataImg, "CamnangImage")
+      }
+      dispatch(GetAllCamnang())
+      dispatch({type:'CLOSE_MODAL'})
+
+      successNotification("Cập nhật thành công", "Bạn đã cập nhật 1 Cẩm nang thành công!!")
+
+    } catch (error) {
+      errorNotification("Cập nhật thất bại", "Vui lòng kiểm tra lại đường truyền!")
+      
+    }
+  }
+}

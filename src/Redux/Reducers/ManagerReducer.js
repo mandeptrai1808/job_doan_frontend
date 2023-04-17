@@ -3,7 +3,8 @@ const stateDefault = {
     typeId: 0,
     initContent: {},
     userList: [],
-    rootList: []
+    rootList: [],
+    camnangList: []
 }
 
 export const ManagerReducer = (state = stateDefault, action) => {
@@ -23,6 +24,10 @@ export const ManagerReducer = (state = stateDefault, action) => {
         return {...state}    
     case "GET_LIST_ROOTUSER":{
         state.rootList = action.content;
+        return {...state}
+    }
+    case "GET_CAM_NANG_LIST":{
+        state.camnangList = action.content;
         return {...state}
     }
     default:

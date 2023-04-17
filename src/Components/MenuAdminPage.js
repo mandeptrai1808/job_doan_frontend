@@ -25,7 +25,7 @@ export default function MenuAdminPage() {
             type: 'SWITCH_TYPEID',
             content: 0
           })
-          navigate('/admin/menu')
+          navigate('/adminmenu')
         }}>
           3 Tháng đầu thai kì
         </p>
@@ -39,7 +39,7 @@ export default function MenuAdminPage() {
             type: 'SWITCH_TYPEID',
             content: 1
           })
-          navigate('/admin/menu')
+          navigate('/adminmenu')
 
         }}>
           3 Tháng giữa thai kì
@@ -54,7 +54,7 @@ export default function MenuAdminPage() {
             type: 'SWITCH_TYPEID',
             content: 2
           })
-          navigate('/admin/menu')
+          navigate('/adminmenu')
 
         }}>
           3 Tháng cuối đến sinh
@@ -69,7 +69,7 @@ export default function MenuAdminPage() {
             type: 'SWITCH_TYPEID',
             content: 3
           })
-          navigate('/admin/menu')
+          navigate('/adminmenu')
 
         }}>
           Trẻ đến tuổi ăn dặm
@@ -131,9 +131,9 @@ export default function MenuAdminPage() {
         </NavLink>
         </Dropdown>
         <NavLink 
-        to={"/mevabe"}
+        to={"/admincamnang"}
         className="hover:bg-white hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">
-          <p>HỖ TRỢ KHÁCH HÀNG</p>
+          <p>QUẢN LÝ CẨM NANG</p>
         </NavLink>
 
         <NavLink to={'/lienhe'} className="hover:bg-white bg hover:font-bold duration-200  cursor-pointer hover:border-2px h-20 px-5 flex items-center hover:text-black">

@@ -88,7 +88,48 @@ export const ManagerService = {
         method: "POST",
         data: _data
       })
+    },
+
+    GetCamnangList: () => {
+      return axios({
+        url: `${BASE_URL}/camnang/getall`,
+        method: "GET"
+      })
+    },
+
+    DeleteCamnang: (_id) => {
+      return axios({
+        url:  `${BASE_URL}/camnang/delete/${_id}`,
+        method: "DELETE"
+      })
     }
 
+    , AddNewCamnang: (_data) => {
+      return axios({
+        url: `${BASE_URL}/camnang/newcamnang`,
+        method: 'post',
+        data: _data
+      })
+    },
 
+     UploadImageCamnang: (_menuId,_dataImg, _nameForm) => {
+      let formData = new FormData();
+      formData.append(_nameForm, _dataImg);
+      return axios({
+        url: `${BASE_URL}/camnang/uploadimg/${_menuId}`,
+        data: formData,
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+    },
+
+    UpdateCamnang: (_dataMenu, _menuId) => {
+      return axios({
+        url: `${BASE_URL}/camnang/update/${_menuId}`,
+        method: 'PUT',
+        data: _dataMenu
+      })
+    },
 }

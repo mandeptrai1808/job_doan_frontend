@@ -5,9 +5,9 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import React from 'react'
-import { AddNewMenu } from '../Redux/Actions/ManagerAction'
+import { AddNewCamnang, AddNewMenu } from '../Redux/Actions/ManagerAction'
 
-export default function AddNewMenuForm() {
+export default function AddNewCamnangForm() {
 
     const dispatch = useDispatch();
 
@@ -38,14 +38,15 @@ export default function AddNewMenuForm() {
     }
 
     const submitButton = () => {
-      dispatch(AddNewMenu(
+      if (dataContent.title && dataContent.content && selectedImage)
+      dispatch(AddNewCamnang(
         {
-          type: typeId,
           title: dataContent.title,
           content: dataContent.content
         },
         selectedImage
       ))
+      else alert("Vui lòng nhập đầy dủ trường thông tin")
     }
 
     
@@ -74,15 +75,17 @@ export default function AddNewMenuForm() {
                
             </div>
             <div>
-            <Input onChange={getDataContent} name='title' value={dataContent.title} className='mb-2' placeholder='Nhập tên món ăn'></Input>
-            <TextArea onChange={getDataContent} value={dataContent.content}  name='content' rows={5} placeholder='Nhập mô tả công thức'></TextArea>
+            <Input onChange={getDataContent} name='title' value={dataContent.title} className='mb-2' placeholder='Nhập tiêu đề cẩm nang'></Input>
+            <TextArea onChange={getDataContent} value={dataContent.content}  name='content' rows={5} placeholder='Nhập nội dung'></TextArea>
             </div>
         </div>
         <div className='flex justify-center'>
         <button onClick={() => {
           submitButton()
         }} className='w-20 rounded-md my-5 py-2 bg-red-500 text-white'>ADD</button>
-        <button onClick={cancelButton} className='w-20 rounded-md my-5 ml-2 py-2 bg-blue-500 text-white'>CANCEL</button>
+        <button onClick={() => {
+          cancelButton()
+        }} className='w-20 rounded-md my-5 ml-2 py-2 bg-blue-500 text-white'>CANCEL</button>
         </div>
 
     </div>
